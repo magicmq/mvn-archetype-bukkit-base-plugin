@@ -18,6 +18,8 @@ public class ${name} extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
+        Bukkit.getPluginManager().registerEvents(this, new PluginListener());
+
         getCommand("${artifactId}").setExecutor(new ${name}Command());
     }
 
