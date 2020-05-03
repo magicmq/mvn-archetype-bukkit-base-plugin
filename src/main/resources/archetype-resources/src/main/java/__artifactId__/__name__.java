@@ -1,6 +1,6 @@
 package ${groupId}.${artifactId};
 
-import ${groupId}.${artifactId}.command.Command${name};
+import ${groupId}.${artifactId}.command.${name}Command;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -18,7 +18,6 @@ public class ${name} extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
-        // Set up commands
         getCommand("${artifactId}").setExecutor(new ${name}Command());
     }
 
@@ -34,5 +33,4 @@ public class ${name} extends JavaPlugin {
     public static ${name} get() {
         return instance;
     }
-
 }
