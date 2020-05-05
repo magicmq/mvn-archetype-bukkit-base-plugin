@@ -18,7 +18,7 @@ public class ${name} extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
-        Bukkit.getPluginManager().registerEvents(this, new PluginListener());
+        Bukkit.getPluginManager().registerEvents(new PluginListener(), this);
 
         getCommand("${artifactId}").setExecutor(new ${name}Command());
     }
