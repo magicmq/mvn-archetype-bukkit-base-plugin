@@ -1,6 +1,7 @@
 package ${groupId}.${artifactId};
 
 import ${groupId}.${artifactId}.commands.${name}Command;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
