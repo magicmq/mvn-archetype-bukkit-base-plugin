@@ -1,6 +1,7 @@
 package ${groupId}.${artifactId};
 
 import ${groupId}.${artifactId}.commands.${name}Command;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -18,7 +19,7 @@ public class ${name} extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
-        Bukkit.getPluginManager().registerEvents(this, new PluginListener());
+        Bukkit.getPluginManager().registerEvents(new PluginListener(), this);
 
         getCommand("${artifactId}").setExecutor(new ${name}Command());
     }
