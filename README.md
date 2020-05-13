@@ -5,7 +5,7 @@
 
 The aim of this project is to create a Maven Archetype that resembles a Bukkit plugin. Simply put, an Archetype is a template that defines a general structure of a project. This archetype will generate much of the basic code that goes into every Bukkit plugin (such as a main clas, listener, command, and plugin.yml). For more information on Maven Arcetypes, see [this](https://maven.apache.org/guides/introduction/introduction-to-archetypes.html) link.
 
-This project is a fork of a maven archetype originally created by @Rayzr522, with several changes/updates made in order to make the archetype more useable. The upstream repository is located [here](https://github.com/Rayzr522/mvn-archetype-bukkit-base-plugin).
+This project is a fork of a maven archetype originally created by Rayzr522, with several changes/updates made in order to make the archetype more useable. The upstream repository is located [here](https://github.com/Rayzr522/mvn-archetype-bukkit-base-plugin).
 
 ## Features
 At present, the Arcetype will do the following for you (when the project is created):
