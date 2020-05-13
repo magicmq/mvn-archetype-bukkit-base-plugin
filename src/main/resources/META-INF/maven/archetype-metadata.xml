@@ -13,15 +13,15 @@
 		</requiredProperty>
 
 		<requiredProperty key="groupId">
-			<defaultValue>dev.magicmq</defaultValue>
+			<defaultValue>com.github.someauthor</defaultValue>
 		</requiredProperty>
 
         <requiredProperty key="author">
-			<defaultValue>magicmq</defaultValue>
+			<defaultValue>someauthor</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="version">
-			<defaultValue>1.0</defaultValue>
+			<defaultValue>1.0.0</defaultValue>
 		</requiredProperty>
 
 		<requiredProperty key="mc-version">
