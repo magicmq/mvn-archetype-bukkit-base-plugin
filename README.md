@@ -8,7 +8,7 @@ The aim of this project is to create a Maven Archetype that resembles a Bukkit p
 This project is a fork of a maven archetype originally created by Rayzr522, with several changes/updates made in order to make the archetype more useable. The upstream repository is located [here](https://github.com/Rayzr522/mvn-archetype-bukkit-base-plugin).
 
 ## Features
-At present, the Arcetype will do the following for you (when the project is created):
+At present, the Archetype will do the following for you (when the project is created):
 
 - Creates a package structure according to the GroupID property when the project is created
 - Creates a pom.xml according to the `artifactId`, `groupId`, and `version` properties.
