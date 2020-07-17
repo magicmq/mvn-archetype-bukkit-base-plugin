@@ -18,6 +18,11 @@ public class ${name}Command implements TabExecutor {
     public ${name}Command() {
         subCommands = new ArrayList<>();
         subCommands.add(new ReloadCommand());
+        subCommands.sort((o1, o2) -> {
+        SubCommandMeta subCommandMeta1 = o1.getClass().getAnnotation(SubCommandMeta.class);
+        SubCommandMeta subCommandMeta2 = o2.getClass().getAnnotation(SubCommandMeta.class);
+        return subCommandMeta1.command().compareTo(subCommandMeta2.command());
+        });
     }
 
     @Override
