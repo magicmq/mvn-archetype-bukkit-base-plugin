@@ -19,4 +19,6 @@ public @interface SubCommandMeta {
 
     String usage() default "";
 
+    String description() default "No description provided.";
+
 }

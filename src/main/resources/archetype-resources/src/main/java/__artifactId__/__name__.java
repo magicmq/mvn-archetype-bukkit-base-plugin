@@ -1,6 +1,7 @@
 package ${groupId}.${artifactId};
 
 import ${groupId}.${artifactId}.commands.${name}Command;
+import ${groupId}.${artifactId}.config.PluginConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,6 +32,7 @@ public class ${name} extends JavaPlugin {
 
     public void reload() {
         reloadConfig();
+        PluginConfig.reload();
     }
 
     public static ${name} get() {

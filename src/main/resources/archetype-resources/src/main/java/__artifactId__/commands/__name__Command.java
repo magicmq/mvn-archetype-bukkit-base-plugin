@@ -1,6 +1,9 @@
 package ${groupId}.${artifactId}.commands;
 
+import ${groupId}.${artifactId}.${name};
 import ${groupId}.${artifactId}.commands.subcommands.*;
+import ${groupId}.${artifactId}.config.PluginConfig;
+import ${groupId}.${artifactId}.utils.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,15 +16,19 @@ import java.util.List;
 
 public class ${name}Command implements TabExecutor {
 
+    private static final String HELP_CMD_HEADER = ChatColor.translateAlternateColorCodes('&', "%prefix%&a&lCommand Syntax:");
+    private static final String HELP_CMD_FORMAT = ChatColor.translateAlternateColorCodes('&', "&6/%maincommand% %subcommand% &7- %description%");
+    private static final String HELP_CMD_FOOTER = ChatColor.translateAlternateColorCodes('&', "&aMade with care by %author%");
+
     private final List<SubCommand> subCommands;
 
     public ${name}Command() {
         subCommands = new ArrayList<>();
         subCommands.add(new ReloadCommand());
         subCommands.sort((o1, o2) -> {
-        SubCommandMeta subCommandMeta1 = o1.getClass().getAnnotation(SubCommandMeta.class);
-        SubCommandMeta subCommandMeta2 = o2.getClass().getAnnotation(SubCommandMeta.class);
-        return subCommandMeta1.command().compareTo(subCommandMeta2.command());
+            SubCommandMeta subCommandMeta1 = o1.getClass().getAnnotation(SubCommandMeta.class);
+            SubCommandMeta subCommandMeta2 = o2.getClass().getAnnotation(SubCommandMeta.class);
+            return subCommandMeta1.command().compareTo(subCommandMeta2.command());
         });
     }
 
@@ -35,7 +42,11 @@ public class ${name}Command implements TabExecutor {
         SubCommand subCommand = getSubCmdFromArgument(args[0]);
 
         if (subCommand == null) {
-            sender.sendMessage(ChatColor.RED + "Unrecognized argument " + args[0]);
+            if (sender.hasPermission("${artifactId}.command.listcmds")) {
+                printHelp(sender, label);
+            } else {
+                sender.sendMessage(ChatColor.RED + "Unrecognized argument " + args[0]);
+            }
             return true;
         }
 
@@ -108,5 +119,25 @@ public class ${name}Command implements TabExecutor {
                 return subCommand;
         }
         return null;
+    }
+
+    private void printHelp(CommandSender sender, String label) {
+        sender.sendMessage(HELP_CMD_HEADER
+                .replace("%prefix%", PluginConfig.getMessage("plugin-prefix", false))
+                .replace("%author%", StringUtils.replaceLastOccurrence(String.join(", ", ${name}.get().getDescription().getAuthors()), ", ", " and ")));
+        subCommands.forEach(subCommand -> {
+            SubCommandMeta subCommandMeta = subCommand.getClass().getAnnotation(SubCommandMeta.class);
+            if (sender.hasPermission(subCommandMeta.permission()) || subCommandMeta.permission().equals("")) {
+                if ((subCommandMeta.playerOnly() && sender instanceof Player) || !subCommandMeta.playerOnly()) {
+                    sender.sendMessage(HELP_CMD_FORMAT
+                            .replace("%maincommand%", label)
+                            .replace("%subcommand%", subCommandMeta.usage().equals("") ? subCommandMeta.command() : subCommandMeta.command() + " " + subCommandMeta.usage())
+                            .replace("%description%", subCommandMeta.description()));
+                }
+            }
+        });
+        sender.sendMessage(HELP_CMD_FOOTER
+                .replace("%prefix%", PluginConfig.getMessage("plugin-prefix", false))
+                .replace("%author%", StringUtils.replaceLastOccurrence(String.join(", ", ${name}.get().getDescription().getAuthors()), ", ", " and ")));
     }
 }
