@@ -40,7 +40,7 @@
 
     <distributionManagement>
         <repository>
-            <id>sonatype</id>
+            <id>archetypes</id>
             <url>https://repo.magicmq.dev/repository/archetypes/</url>
         </repository>
     </distributionManagement>
